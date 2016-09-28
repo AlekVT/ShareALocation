@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<meta charset='UTF-8'>
     <title>My New CouchApp</title>
     <link rel="stylesheet" href="style/main.css" type="text/css">
+    <link rel="stylesheet" href="style/leaflet.css" />
   </head>
   <body>
+  	<div id='map'></div>
   	<div id='studentinfo'>
   		<input id='studentname'>
   		<div>
@@ -15,4 +18,9 @@
   </body>
   <script type='text/javascript' src='js/locationdrivel.js'></script>
   <script type='text/javascript' src='js/jquery-3.1.0.min.js'></script>
+  <script src='js/leaflet.js'></script>
+  <script src='js/leafletembed.js'></script>
+  <script>
+  initmap();
+  </script>
 </html>
