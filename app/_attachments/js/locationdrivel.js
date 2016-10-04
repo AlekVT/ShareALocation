@@ -1,14 +1,26 @@
-function getLocation(){
-	console.log('location');
+function getLocation(closure) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(closure);
+    } else { 
+        alert('Geolocation is not supported by this browser.');
+    }
 }
 
-function shareLocation(){
+function toArray(position){
+	return [position.coords.latitude, position.coords.longitude];
+}
+
+function logLocation(aLocation){
 	var sName = $('#studentname').val();
-	console.log('location of ' + sName);
+	
+	if (sName == null || sName == '' || sName == ' '){
+		alert('U moet uw naam ingeven');
+		return;
+	}
 	
 	var oData = {
 			'person' : sName,
-			'location' : {}
+			'location' : aLocation
 	}
 	
 	$.ajax({
@@ -19,4 +31,10 @@ function shareLocation(){
 		succes: function(){ alert('things apparently went right')},
 		contentType: 'application/json'
 	});
+	
+	map.setView(new L.LatLng(aLocation[0], aLocation[1]),9);
+}
+
+function getAllLocations(){
+	alert('show all locations.');
 }

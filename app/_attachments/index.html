@@ -11,8 +11,9 @@
   	<div id='studentinfo'>
   		<input id='studentname'>
   		<div>
-  			<button onclick='getLocation();'>get student location</button>
-  			<button onclick='shareLocation();'>share student location</button>
+  			<button onclick='getLocation(function (position) {logLocation(toArray(position));});'>Locatie Loggen</button>
+  			<button onclick='getLocation(function (position) {map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude),9);});'>Locatie tonen</button>
+  			<button onclick='getAllLocations();'>Toon alle locaties</button>
   		</div>
   	</div>
   </body>
@@ -21,6 +22,6 @@
   <script src='js/leaflet.js'></script>
   <script src='js/leafletembed.js'></script>
   <script>
-  initmap();
+  	initmap([51.215798, 4.411097]);
   </script>
 </html>
