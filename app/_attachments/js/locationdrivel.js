@@ -1,4 +1,5 @@
 function getLocation(closure) {
+	cleanMap();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(closure);
     } else { 
@@ -8,6 +9,11 @@ function getLocation(closure) {
 
 function toArray(position){
 	return [position.coords.latitude, position.coords.longitude];
+}
+
+function currentLocation(position){
+	map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude),9); 
+	addMarker([position.coords.latitude, position.coords.longitude], null, "U bent hier");
 }
 
 function logLocation(aLocation){
@@ -36,6 +42,7 @@ function logLocation(aLocation){
 }
 
 function getAllLocations(){
+	cleanMap();
 	
 	$.getJSON(
 		'http://127.0.0.1:5984/sharealocation/_design/all/_view/view_all',
@@ -55,10 +62,15 @@ function setPosition(aData){
 	var name = aData['person'];
 	var location = aData['location'];
 	if (typeof(location[0]) !== 'undefined' && location) {
-		addMarker([location[0], location[1]]);
+		addMarker([location[0], location[1]], name);
 	}
 }
 
-function addMarker(position){
+function addMarker(position, name = null, message = null){
 	var marker = L.marker(position).addTo(map);
+	if (message !== null){
+		marker.bindPopup(message).openPopup();
+	} else if (name !== null){
+		marker.bindPopup("<b>" + name + "</b><br>was hier.").openPopup();
+	}
 }

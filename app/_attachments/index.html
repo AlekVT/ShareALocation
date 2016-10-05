@@ -11,8 +11,8 @@
   	<div id='studentinfo'>
   		<input id='studentname'>
   		<div>
-  			<button onclick='getLocation(function (position) {logLocation(toArray(position));});'>Locatie Loggen</button>
-  			<button onclick='getLocation(function (position) {map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude),9);});'>Locatie tonen</button>
+  			<button onclick='getLocation(function (position) { logLocation(toArray(position)); currentLocation(position); });'>Locatie Loggen</button>
+  			<button onclick='getLocation(function (position) { currentLocation(position); });'>Locatie tonen</button>
   			<button onclick='getAllLocations();'>Toon alle locaties</button>
   		</div>
   	</div>

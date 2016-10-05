@@ -29,3 +29,8 @@
     		alert("Invalid location data");
     	}
     }
+    
+    function cleanMap(){
+    	map.remove();
+    	initmap([51.215798, 4.411097]);
+    }
